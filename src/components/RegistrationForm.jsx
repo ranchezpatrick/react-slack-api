@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 
 const RegistraionForm = (props) => {
+  const [users, setUsers] = useState([]);
+
   const handleButton = () => {
     axios({
       method: "post",
@@ -24,28 +26,26 @@ const RegistraionForm = (props) => {
         'password': "12345678", 
       },
     }).then((res) => {
+      setUsers(res);
       console.log(res);
-      axios({
-        method: "get",
-        url: "http://206.189.91.54//api/v1/users",
-        header: {
-          "access-token": 'U2Ww-w8OlBBELchDq12khg',
-          'client': "R6UjN1vWOAk8O86Rqa0DWA",
-          'expiry': "1633519041",
-          'uid': "3212cs1231@example.com",
-        },
-      }).then((res) => {
-        console.log(res);
-        setUsers(res);
-      });
     });
   };
 
   const showUsers = () => {
-    
+    axios({
+      method: "get",
+      url: "http://206.189.91.54/api/v1/users",
+      headers: {
+        "access-token": "9gTDoFw9iQSja4u6tZSCxA",
+        'client': "hVZIHPy5snFp3sg6ADH_tg",
+        'expiry': "1633567055",
+        'uid': "3212cs1231@example.com",
+      },
+    }).then((res) => {
+      console.log(res);
+    });
   };
 
-  const [users, setUsers] = useState([]);
 
   return (
     <div className='registration-wrapper'>
